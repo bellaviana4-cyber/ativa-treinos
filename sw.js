@@ -1,5 +1,20 @@
-const CACHE='ativa-rosa-v2';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];
-self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',event=>event.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(x=>x!==CACHE).map(x=>caches.delete(x))))])));
-self.addEventListener('fetch',event=>{if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;if(event.request.mode==='navigate')event.respondWith(fetch(event.request).then(resp=>{if(resp.ok){let copy=resp.clone();caches.open(CACHE).then(cache=>cache.put('./index.html',copy))}return resp}).catch(()=>caches.match('./index.html')));else event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request)));});
+const CACHE='ativa-malva-v3';
+const ASSETS=['./','./index.html','./theme.css?v=malva-3','./updates.js','./manifest.webmanifest','./icons/favicon.svg','./icons/icon-192.png','./icons/icon-512.png'];
+self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS))));
+self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
+self.addEventListener('activate',event=>event.waitUntil((async()=>{
+  const keys=await caches.keys();
+  await Promise.all(keys.filter(key=>key.startsWith('ativa-')&&key!==CACHE).map(key=>caches.delete(key)));
+  await self.clients.claim();
+})()));
+self.addEventListener('fetch',event=>{
+  if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;
+  if(event.request.mode==='navigate'){
+    event.respondWith(fetch(event.request).then(response=>{
+      if(response.ok)event.waitUntil(caches.open(CACHE).then(cache=>cache.put('./index.html',response.clone())));
+      return response;
+    }).catch(()=>caches.match('./index.html')));
+  }else{
+    event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request)));
+  }
+});

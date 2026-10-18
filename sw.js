@@ -1,5 +1,5 @@
-const CACHE='ativa-malva-v4';
-const ASSETS=['./','./index.html','./theme.css?v=malva-4','./updates.js','./manifest.webmanifest','./icons/favicon.svg','./icons/icon-192.png','./icons/icon-512.png'];
+const CACHE='ativa-pink-v5';
+const ASSETS=['./','./index.html','./theme.css?v=pink-5','./updates.js','./manifest.webmanifest','./icons/favicon.svg','./icons/icon-192.png','./icons/icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS))));
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('activate',event=>event.waitUntil((async()=>{

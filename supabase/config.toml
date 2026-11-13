@@ -2,3 +2,7 @@
 # Every request is authenticated with auth.getUser inside the function, including
 # projects using asymmetric signing keys. There are no public callback endpoints.
 verify_jwt = false
+
+[functions.hevy]
+# The function verifies every user session with auth.getUser.
+verify_jwt = false

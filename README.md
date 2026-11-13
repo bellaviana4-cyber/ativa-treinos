@@ -52,6 +52,10 @@ O app salva registros no armazenamento local do navegador. Para sincronizar entr
 - O Strava pode ser importado por **CSV** ou conectado por OAuth após instalar o serviço descrito em [STRAVA.md](STRAVA.md).
 - As séries de aquecimento são identificadas como **AQ.**, podem ser modificadas e não contam como séries efetivas.
 
+## Hevy automático
+
+A integração com Hevy Pro está descrita em [HEVY.md](HEVY.md). A chave fica no serviço privado Supabase, e o ATIVA recebe apenas os dados dos treinos. A importação CSV continua disponível.
+
 ## Arquivos
 
 | Arquivo | Função |

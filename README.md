@@ -10,7 +10,8 @@ Aplicativo pessoal de acompanhamento de musculação e corrida em **dark mode co
 - permite editar as 19 semanas de progressão e acompanhar medidas e peso;
 - exibe histórico e evolução, importa CSV do Hevy/Strava e exporta backup JSON;
 - funciona offline depois do primeiro carregamento da PWA;
-- oferece sincronização opcional por uma conta Supabase, **não configurada neste repositório**.
+- oferece sincronização opcional por uma conta Supabase, **não configurada neste repositório**;
+- prepara conexão automática com Strava via OAuth e um serviço privado Supabase; veja [STRAVA.md](STRAVA.md) para ativar.
 
 ## Como publicar o site
 
@@ -48,7 +49,7 @@ O app salva registros no armazenamento local do navegador. Para sincronizar entr
 - Não envie `workouts.csv`, o HTML pessoal, relatórios de peso, backups JSON ou senhas para o GitHub.
 - Backups são feitos em **Configurações → Exportar backup JSON**. Exporte regularmente e antes de trocar de dispositivo.
 - O banco Supabase tem políticas RLS por usuário, mas os registros não têm criptografia ponta a ponta.
-- A importação Strava é por **CSV**, não por login direto.
+- O Strava pode ser importado por **CSV** ou conectado por OAuth após instalar o serviço descrito em [STRAVA.md](STRAVA.md).
 - As séries de aquecimento são identificadas como **AQ.**, podem ser modificadas e não contam como séries efetivas.
 
 ## Arquivos

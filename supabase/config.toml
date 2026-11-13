@@ -1,0 +1,4 @@
+[functions.strava]
+# Every request is authenticated with auth.getUser inside the function, including
+# projects using asymmetric signing keys. There are no public callback endpoints.
+verify_jwt = false

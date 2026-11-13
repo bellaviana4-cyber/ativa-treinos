@@ -1,5 +1,5 @@
-const CACHE='ativa-hevy-v7';
-const ASSETS=['./','./index.html','./theme.css?v=hevy-7','./updates.js','./strava-model.js','./strava.js','./hevy-model.js','./hevy.js','./manifest.webmanifest','./icons/favicon.svg','./icons/icon-192.png','./icons/icon-512.png'];
+const CACHE='ativa-weekly-v8';
+const ASSETS=['./','./index.html','./theme.css?v=weekly-8','./updates.js','./strava-model.js','./strava.js','./hevy-model.js','./hevy.js','./activity-model.js','./manifest.webmanifest','./icons/favicon.svg','./icons/icon-192.png','./icons/icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS))));
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('activate',event=>event.waitUntil((async()=>{

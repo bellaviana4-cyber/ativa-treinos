@@ -49,7 +49,7 @@ test('app starts with both integrations and excludes API copies from backups',()
   const elements=new Map();const el=id=>{if(!elements.has(id))elements.set(id,{textContent:id==='hevy-history'?'[]':'',innerHTML:'',style:{},classList:{toggle(){}},addEventListener(){},querySelector(){return null}});return elements.get(id);};
   const sandbox={Date,Math,JSON,Number,String,Object,Array,Set,Map,URL,URLSearchParams,structuredClone,setTimeout,clearTimeout,setInterval(){},addEventListener(){},document:{hidden:false,getElementById:el,addEventListener(){},querySelectorAll(){return []}},history:{replaceState(){}},location:{search:'',pathname:'/',hash:''},navigator:{onLine:false},localStorage:{getItem(){return null},setItem(){}},sessionStorage:{getItem(){return null},removeItem(){}}};
   sandbox.window=sandbox;const context=vm.createContext(sandbox);
-  for(const path of ['hevy-model.js','hevy.js','strava-model.js','strava.js'])vm.runInContext(readFileSync(new URL('../'+path,import.meta.url),'utf8'),context);
+  for(const path of ['activity-model.js','hevy-model.js','hevy.js','strava-model.js','strava.js'])vm.runInContext(readFileSync(new URL('../'+path,import.meta.url),'utf8'),context);
   for(const match of readFileSync(new URL('../index.html',import.meta.url),'utf8').matchAll(/<script>([\s\S]*?)<\/script>/g))vm.runInContext(match[1],context);
   const settings=vm.runInContext('settingsPage()',context);assert.ok(settings.includes('Hevy automático'));assert.ok(settings.includes('Strava automático'));
   vm.runInContext("state.hevyApi=[{id:'hevy-api-1',api:true}];state.hevy=[{id:'csv-1'}];",context);
